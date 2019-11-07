@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zerdaly Business</string>
+    <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoiemVyZGFseTE5IiwiYSI6ImNrMmRic28yNDBhajczY283dXZyNzIxemsifQ.G-hzaNMz313Uw3_UiMkHIQ</string>
+</resources>
