@@ -391,7 +391,9 @@ class BusinessRegisterState extends State<BusinessRegister> {
             ),
           ),
           onTap: () {
-            faceImageValidation();
+            if (!imageBeingProcessed) {
+              faceImageValidation();
+            }
           },
         ),
         //Cedula de identidad
@@ -436,7 +438,9 @@ class BusinessRegisterState extends State<BusinessRegister> {
             ),
           ),
           onTap: () {
-            idImageValidation();
+            if (!imageBeingProcessed) {
+              idImageValidation();
+            }
           },
         ),
         imageBeingProcessed

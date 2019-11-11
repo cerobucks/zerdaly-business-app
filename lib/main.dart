@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:zerdaly_business_app/Token.dart';
 import 'package:zerdaly_business_app/business_views/general.dart';
+import 'package:zerdaly_business_app/delivery_views/general.dart';
 import 'package:zerdaly_business_app/startpage.dart';
 
 void main() => runApp(new MaterialApp(
@@ -74,7 +75,9 @@ class MySplashScreenState extends State<MySplashScreen> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => BusinessGeneral()));
       } else if (dataResult[0]["kind"] == "Delivery") {
-        print("delivery");
+                Navigator.pop(context);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DeliveryGeneral()));
       }
     } else {
       Navigator.pop(context);

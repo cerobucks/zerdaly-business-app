@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
-class Business {
-  final url = 'https://api.zerdaly.com/api/business/';
+class Delivery {
+  final url = 'https://api.zerdaly.com/api/delivery/';
 
   Future<List> login(String email, String pass) async {
     List response = new List(3);
@@ -55,7 +55,7 @@ class Business {
     return response;
   }
 
-    Future<List> uploadBusinessImage(String img, String token) async {
+  Future<List> uploadBusinessImage(String img, String token) async {
     List response = new List(3);
     await http.post(url + "upload", body: {
       'json': json.encode({

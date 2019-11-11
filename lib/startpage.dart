@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zerdaly_business_app/Login/deliveryLogin.dart';
 
 import 'Login/businessLogin.dart';
 
@@ -115,7 +116,7 @@ class StartPageState extends State<StartPage> {
                               ),
                             )),
                         onTap: () {
-                          print("delivery");
+                           Navigator.push(context, MaterialPageRoute(builder: (context)=> DeliveryLogin()));
                         },
                       )
                     ],
