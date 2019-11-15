@@ -38,6 +38,8 @@ dependencies:
   compressimage: ^0.1.1
   jiffy: ^2.1.1
   flutter_masked_text: ^0.8.0
+  geolocator: ^5.1.5
+  
 
 
 dev_dependencies:

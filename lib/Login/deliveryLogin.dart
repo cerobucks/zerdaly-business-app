@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:zerdaly_business_app/Token.dart';
 import 'package:zerdaly_business_app/delivery_views/general.dart';
 import 'package:zerdaly_business_app/model/delivery.dart';
-import 'package:zerdaly_business_app/register/businessRegister.dart';
 import 'package:zerdaly_business_app/register/deliveryRegister.dart';
 
 class DeliveryLogin extends StatefulWidget {
@@ -43,7 +42,7 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                 )),
             Container(
               padding: EdgeInsets.all(5),
-              height: screenInfo.size.height / 1.8,
+              height: screenInfo.size.height / 1.55,
               child: Card(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

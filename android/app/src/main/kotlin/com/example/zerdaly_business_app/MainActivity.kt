@@ -1,4 +1,4 @@
-package com.example.zerdaly_business_app
+package com.zerdaly.zerdaly_business_app
 
 import android.os.Bundle
 

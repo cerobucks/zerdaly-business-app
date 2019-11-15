@@ -42,7 +42,7 @@ class BusinessLoginState extends State<BusinessLogin> {
                 )),
             Container(
               padding: EdgeInsets.all(5),
-              height: screenInfo.size.height / 1.8,
+              height: screenInfo.size.height / 1.55,
               child: Card(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -186,11 +186,14 @@ class BusinessLoginState extends State<BusinessLogin> {
                           style: TextStyle(
                               fontFamily: 'Kanit',
                               color: Color.fromRGBO(255, 144, 82, 1),
-                              fontSize: screenInfo.size.width / 19),
+                              fontSize: screenInfo.size.width / 20),
                         ),
                       ),
-                      onTap: (){
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=> BusinessRegister()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BusinessRegister()));
                       },
                     ),
                     Spacer()
@@ -223,7 +226,7 @@ class BusinessLoginState extends State<BusinessLogin> {
     }
   }
 
-  saveToken(String auth) async{
+  saveToken(String auth) async {
     Token token = Token.instance;
     Map<String, dynamic> row = {
       Token.columnKind: "Business",

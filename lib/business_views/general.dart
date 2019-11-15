@@ -249,7 +249,8 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                           fontFamily: 'Kanit',
                           fontSize: 18)),
                   onTap: () async {
-                    await token.delete(1);
+                    final id = await token.queryAllRows();
+                    await token.delete(id[0]['id']);
                     Navigator.pop(context);
                     Navigator.push(
                         context,
@@ -351,7 +352,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                     fontFamily: 'Kanit',
                                     color: Colors.grey[600],
                                     fontSize:
-                                        MediaQuery.of(context).size.width / 19),
+                                        MediaQuery.of(context).size.width / 22),
                               ),
                               trailing: Icon(
                                 Icons.insert_chart,
@@ -365,7 +366,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                         fontFamily: 'Kanit',
                                         fontSize:
                                             MediaQuery.of(context).size.width /
-                                                6,
+                                                8,
                                         color: Colors.grey[600]),
                                   )
                                 : Center(
@@ -397,7 +398,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                   fontFamily: 'Kanit',
                                   color: Colors.grey[600],
                                   fontSize:
-                                      MediaQuery.of(context).size.width / 19),
+                                      MediaQuery.of(context).size.width / 22),
                             ),
                             trailing: Icon(
                               Icons.bubble_chart,
@@ -410,7 +411,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                   style: TextStyle(
                                       fontFamily: 'Kanit',
                                       fontSize:
-                                          MediaQuery.of(context).size.width / 6,
+                                          MediaQuery.of(context).size.width / 8,
                                       color: Colors.grey[600]),
                                 )
                               : Center(
@@ -447,7 +448,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                 fontFamily: 'Kanit',
                                 color: Colors.grey[600],
                                 fontSize:
-                                    MediaQuery.of(context).size.width / 19),
+                                    MediaQuery.of(context).size.width / 22),
                           ),
                           trailing: Icon(
                             Icons.local_shipping,
@@ -460,7 +461,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                 style: TextStyle(
                                     fontFamily: 'Kanit',
                                     fontSize:
-                                        MediaQuery.of(context).size.width / 6,
+                                        MediaQuery.of(context).size.width / 8,
                                     color: Colors.grey[600]),
                               )
                             : Center(
@@ -488,7 +489,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                     fontFamily: 'Kanit',
                                     color: Colors.grey[600],
                                     fontSize:
-                                        MediaQuery.of(context).size.width / 19),
+                                        MediaQuery.of(context).size.width / 22),
                               ),
                               trailing: Icon(
                                 Icons.monetization_on,
@@ -502,7 +503,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                         fontFamily: 'Kanit',
                                         fontSize:
                                             MediaQuery.of(context).size.width /
-                                                12,
+                                                13,
                                         color: Colors.grey[600]),
                                   )
                                 : Center(
@@ -541,7 +542,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                   fontFamily: 'Kanit',
                                   color: Colors.grey[600],
                                   fontSize:
-                                      MediaQuery.of(context).size.width / 20),
+                                      MediaQuery.of(context).size.width / 25),
                             ),
                             trailing: Icon(
                               Icons.card_giftcard,
@@ -557,7 +558,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       fontFamily: 'Kanit',
                                       fontSize:
                                           MediaQuery.of(context).size.width /
-                                              12,
+                                              13,
                                       color: businessInfo["status"] == 0
                                           ? Colors.grey
                                           : Colors.green),
@@ -592,7 +593,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                 fontFamily: 'Kanit',
                                 color: Colors.grey[600],
                                 fontSize:
-                                    MediaQuery.of(context).size.width / 19),
+                                    MediaQuery.of(context).size.width / 22),
                           ),
                           trailing: Icon(
                             Icons.star,
@@ -605,7 +606,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                 style: TextStyle(
                                     fontFamily: 'Kanit',
                                     fontSize:
-                                        MediaQuery.of(context).size.width / 6,
+                                        MediaQuery.of(context).size.width / 8,
                                     color: Colors.grey[600]),
                               )
                             : Center(
@@ -631,7 +632,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
           count++;
         }
       }
-    }else{
+    } else {
       return 0.toString();
     }
 
@@ -643,7 +644,6 @@ class BusinessGeneralState extends State<BusinessGeneral> {
     var now = DateTime.now().toString();
     var split = now.split("-");
     String weekYear = split[0] + "-" + Jiffy().week.toString();
-    print(sales);
 
     if (sales[weekYear] != null) {
       for (var i = 0; i < sales[weekYear].length; i++) {
@@ -1161,7 +1161,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                       ),
                       Container(
                           width: MediaQuery.of(ctx).size.width / 1.5,
-                          height: MediaQuery.of(ctx).size.width / 5,
+                         // height: MediaQuery.of(ctx).size.width / 5,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -1211,13 +1211,13 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       Text("Precio",
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize: MediaQuery.of(context).size.width/32,
                                             fontFamily: 'Kanit',
                                           )),
                                       Text(productData["price"].toString(),
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize: MediaQuery.of(context).size.width/32,
                                             fontFamily: 'Kanit',
                                           )),
                                     ],
@@ -1230,13 +1230,13 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       Text("Cant. D.",
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize: MediaQuery.of(context).size.width/32,
                                             fontFamily: 'Kanit',
                                           )),
                                       Text(productData["on_stock"].toString(),
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize: MediaQuery.of(context).size.width/32,
                                             fontFamily: 'Kanit',
                                           )),
                                     ],
@@ -1249,20 +1249,20 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       Text("Estado",
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize: MediaQuery.of(context).size.width/32,
                                             fontFamily: 'Kanit',
                                           )),
                                       productData["active"] == 1
                                           ? Text("Activo",
                                               style: TextStyle(
                                                 color: Colors.green,
-                                                fontSize: 16,
+                                                fontSize: MediaQuery.of(context).size.width/32,
                                                 fontFamily: 'Kanit',
                                               ))
                                           : Text("Inactivo",
                                               style: TextStyle(
                                                 color: Colors.red,
-                                                fontSize: 16,
+                                                fontSize: MediaQuery.of(context).size.width/32,
                                                 fontFamily: 'Kanit',
                                               )),
                                     ],
@@ -1609,7 +1609,6 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                     editProductData["active"] = 1;
                   });
                 }
-                print(editProductData["active"]);
               },
               value: editProductData["active"] == 0 ? false : true,
             ),
@@ -1935,7 +1934,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                             style: TextStyle(
                               color: Colors.grey[600],
                               fontFamily: 'Kanit',
-                              fontSize: 18,
+                              fontSize: 16,
                             ),
                           ),
                           Container(
@@ -1950,7 +1949,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                             style: TextStyle(
                               color: Colors.grey[600],
                               fontFamily: 'Kanit',
-                              fontSize: 18,
+                              fontSize: 16,
                             ),
                           ),
                           Container(
@@ -1965,7 +1964,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                             style: TextStyle(
                               color: Colors.grey[600],
                               fontFamily: 'Kanit',
-                              fontSize: 18,
+                              fontSize: 16,
                             ),
                           ),
                           Container(
@@ -2006,7 +2005,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                       ),
                       Container(
                           width: MediaQuery.of(ctx).size.width / 1.5,
-                          height: MediaQuery.of(ctx).size.width / 5,
+                        //  height: MediaQuery.of(ctx).size.width / 5,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -2019,7 +2018,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                               " y otros...",
                                       style: TextStyle(
                                         color: Colors.grey[600],
-                                        fontSize: 16,
+                                        fontSize: 15,
                                         fontFamily: 'Kanit',
                                       )),
                                   Spacer(),
@@ -2036,9 +2035,9 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                   ),
                                 ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 5),
-                              ),
+                              // Padding(
+                              //   padding: EdgeInsets.only(top: 1),
+                              // ),
                               Row(
                                 children: <Widget>[
                                   Column(
@@ -2048,7 +2047,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       Text("Total",
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize: MediaQuery.of(context).size.width/31,
                                             fontFamily: 'Kanit',
                                           )),
                                       Text(
@@ -2056,7 +2055,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                               .toString(),
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize:  MediaQuery.of(context).size.width/31,
                                             fontFamily: 'Kanit',
                                           )),
                                     ],
@@ -2069,13 +2068,13 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       Text("Cant.",
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize:  MediaQuery.of(context).size.width/31,
                                             fontFamily: 'Kanit',
                                           )),
                                       Text(orderProducts.length.toString(),
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize:  MediaQuery.of(context).size.width/31,
                                             fontFamily: 'Kanit',
                                           )),
                                     ],
@@ -2088,14 +2087,14 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       Text("Detalles",
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 16,
+                                            fontSize:  MediaQuery.of(context).size.width/31,
                                             fontFamily: 'Kanit',
                                           )),
                                       GestureDetector(
                                         child: Text("Ver más",
                                             style: TextStyle(
                                               color: Colors.orange,
-                                              fontSize: 16,
+                                              fontSize:  MediaQuery.of(context).size.width/31,
                                               fontFamily: 'Kanit',
                                             )),
                                         onTap: () {
@@ -2222,7 +2221,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                     userDetails[0]["lastname"],
                             style: TextStyle(
                               color: Colors.grey[600],
-                              fontSize: 16,
+                              fontSize:  MediaQuery.of(context).size.width/28,
                               fontFamily: 'Kanit',
                             )),
                       ],
@@ -2243,7 +2242,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                             userDetails == null ? " " : userDetails[0]["phone"],
                             style: TextStyle(
                               color: Colors.grey[600],
-                              fontSize: 16,
+                              fontSize:  MediaQuery.of(context).size.width/28,
                               fontFamily: 'Kanit',
                             )),
                       ],
@@ -2263,7 +2262,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                         Text(userDateOfPurchase(orderDetailsData["created_at"]),
                             style: TextStyle(
                               color: Colors.grey[600],
-                              fontSize: 16,
+                              fontSize:  MediaQuery.of(context).size.width/28,
                               fontFamily: 'Kanit',
                             )),
                       ],
@@ -2358,7 +2357,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                         Text(productDetails["name"].toString(),
                                             style: TextStyle(
                                               color: Colors.grey[600],
-                                              fontSize: 16,
+                                              fontSize:  MediaQuery.of(context).size.width/25,
                                               fontFamily: 'Kanit',
                                             )),
                                       ],
@@ -2377,7 +2376,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                         Text(1.toString(),
                                             style: TextStyle(
                                               color: Colors.grey[600],
-                                              fontSize: 16,
+                                              fontSize:  MediaQuery.of(context).size.width/25,
                                               fontFamily: 'Kanit',
                                             )),
                                       ],
@@ -2399,7 +2398,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                                     .toString(),
                                             style: TextStyle(
                                               color: Colors.grey[600],
-                                              fontSize: 16,
+                                              fontSize:  MediaQuery.of(context).size.width/25,
                                               fontFamily: 'Kanit',
                                             ))
                                       ],
@@ -2431,10 +2430,10 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Spacer(),
-                          Text("Sub total",
+                          Text("Sub total:",
                               style: TextStyle(
                                   color: Colors.grey[600],
-                                  fontSize: 16,
+                                  fontSize:  MediaQuery.of(context).size.width/25,
                                   fontFamily: 'Kanit',
                                   fontWeight: FontWeight.w800)),
                           Spacer(),
@@ -2443,7 +2442,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                   orderDetailsData["products_total"].toString(),
                               style: TextStyle(
                                 color: Colors.grey[600],
-                                fontSize: 16,
+                                fontSize:  MediaQuery.of(context).size.width/25,
                                 fontFamily: 'Kanit',
                               )),
                           Spacer()
@@ -2453,22 +2452,22 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Spacer(),
-                          Text("4.9% + \$15",
+                          Text("4.9% + \$15:",
                               style: TextStyle(
                                   color: Colors.grey[600],
-                                  fontSize: 16,
+                                  fontSize:  MediaQuery.of(context).size.width/25,
                                   fontFamily: 'Kanit',
                                   fontWeight: FontWeight.w800)),
                           Spacer(),
                           Text(
-                              "-\$" +
+                              " -\$" +
                                   ((orderDetailsData["products_total"] *
                                               0.049) +
                                           15)
                                       .toString(),
                               style: TextStyle(
                                 color: Colors.grey[600],
-                                fontSize: 16,
+                                fontSize:  MediaQuery.of(context).size.width/25,
                                 fontFamily: 'Kanit',
                               )),
                           Spacer()
@@ -2478,10 +2477,10 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Spacer(),
-                          Text("Total",
+                          Text("Total:",
                               style: TextStyle(
                                   color: Colors.orange,
-                                  fontSize: 16,
+                                  fontSize:  MediaQuery.of(context).size.width/25,
                                   fontFamily: 'Kanit',
                                   fontWeight: FontWeight.w800)),
                           Spacer(),
@@ -2494,7 +2493,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       .toString(),
                               style: TextStyle(
                                 color: Colors.orange,
-                                fontSize: 16,
+                                fontSize:  MediaQuery.of(context).size.width/25,
                                 fontFamily: 'Kanit',
                               )),
                           Spacer()
@@ -2592,7 +2591,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                             delivery["lastname"],
                                         style: TextStyle(
                                           color: Colors.grey[600],
-                                          fontSize: 16,
+                                          fontSize:  MediaQuery.of(context).size.width/28,
                                           fontFamily: 'Kanit',
                                         )),
                                   ],
@@ -2612,7 +2611,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                     Text(delivery["phone"],
                                         style: TextStyle(
                                           color: Colors.grey[600],
-                                          fontSize: 16,
+                                          fontSize: MediaQuery.of(context).size.width/28,
                                           fontFamily: 'Kanit',
                                         )),
                                   ],
@@ -2625,7 +2624,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       "Acción",
                                       style: TextStyle(
                                           color: Colors.grey[600],
-                                          fontSize: 16,
+                                          fontSize:  168,
                                           fontFamily: 'Kanit',
                                           fontWeight: FontWeight.w800),
                                     ),
@@ -2633,7 +2632,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       child: Text("Contactar",
                                           style: TextStyle(
                                             color: Colors.orange,
-                                            fontSize: 16,
+                                            fontSize:  MediaQuery.of(context).size.width/28,
                                             fontFamily: 'Kanit',
                                           )),
                                       onTap: () {
@@ -2678,7 +2677,6 @@ class BusinessGeneralState extends State<BusinessGeneral> {
 
     final response = await business.contactDeliveryAvailible(
         deliveryId, orderId, auth[0]["Auth"]);
-    print(response);
     if (response[0] == '200') {
       successMessage(response[2].toString());
     } else {
@@ -2723,7 +2721,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                           shippingDelivery[0]["lastname"],
                                       style: TextStyle(
                                         color: Colors.grey[600],
-                                        fontSize: 16,
+                                        fontSize:  MediaQuery.of(context).size.width/28,
                                         fontFamily: 'Kanit',
                                       )),
                                 ],
@@ -2743,7 +2741,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                   Text(shippingDelivery[0]["phone"],
                                       style: TextStyle(
                                         color: Colors.grey[600],
-                                        fontSize: 16,
+                                        fontSize:  MediaQuery.of(context).size.width/28,
                                         fontFamily: 'Kanit',
                                       )),
                                 ],
@@ -2765,7 +2763,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                           orderDetailsData["updated_at"]),
                                       style: TextStyle(
                                         color: Colors.grey[600],
-                                        fontSize: 16,
+                                        fontSize:  MediaQuery.of(context).size.width/28,
                                         fontFamily: 'Kanit',
                                       )),
                                 ],
@@ -2785,7 +2783,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                         "Estado del envío: ",
                         style: TextStyle(
                             color: Colors.grey[600],
-                            fontSize: 18,
+                            fontSize:  MediaQuery.of(context).size.width/25,
                             fontFamily: 'Kanit',
                             fontWeight: FontWeight.w800),
                         textAlign: TextAlign.left,
@@ -2811,7 +2809,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
           "No enviado.",
           style: TextStyle(
               color: Colors.red,
-              fontSize: 18,
+              fontSize:  MediaQuery.of(context).size.width/25,
               fontFamily: 'Kanit',
               fontWeight: FontWeight.w800),
           textAlign: TextAlign.left,
@@ -2821,7 +2819,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
           "En camino al negocio.",
           style: TextStyle(
               color: Colors.yellow[700],
-              fontSize: 18,
+              fontSize:  MediaQuery.of(context).size.width/25,
               fontFamily: 'Kanit',
               fontWeight: FontWeight.w800),
           textAlign: TextAlign.left,
@@ -2831,7 +2829,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
           "Llego al negocio.",
           style: TextStyle(
               color: Colors.orange,
-              fontSize: 18,
+              fontSize:  MediaQuery.of(context).size.width/25,
               fontFamily: 'Kanit',
               fontWeight: FontWeight.w800),
           textAlign: TextAlign.left,
@@ -2841,7 +2839,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
           "De camino al cliente.",
           style: TextStyle(
               color: Colors.yellow[700],
-              fontSize: 18,
+              fontSize:  MediaQuery.of(context).size.width/25,
               fontFamily: 'Kanit',
               fontWeight: FontWeight.w800),
           textAlign: TextAlign.left,
@@ -2851,7 +2849,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
           "Llego donde el cliente.",
           style: TextStyle(
               color: Colors.green,
-              fontSize: 18,
+              fontSize:  MediaQuery.of(context).size.width/25,
               fontFamily: 'Kanit',
               fontWeight: FontWeight.w800),
           textAlign: TextAlign.left,
@@ -2861,7 +2859,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
           "Completado.",
           style: TextStyle(
               color: Colors.green,
-              fontSize: 18,
+              fontSize:  MediaQuery.of(context).size.width/25,
               fontFamily: 'Kanit',
               fontWeight: FontWeight.w800),
           textAlign: TextAlign.left,
@@ -3273,7 +3271,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                     children: <Widget>[
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 10,
+                        //height: MediaQuery.of(context).size.height / 10,
                         child: Card(
                           child: Padding(
                               padding: EdgeInsets.all(5),

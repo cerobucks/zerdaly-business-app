@@ -22,6 +22,9 @@
       "api_key": [
         {
           "current_key": "AIzaSyBWQBUDP3az8cRxwu9NSng6CybhkmwOmo8"
+        },
+        {
+          "current_key": "AIzaSyAxGAEG38traBe87IBnlCbx1QYfPB_h54g"
         }
       ],
       "services": {
@@ -37,9 +40,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:602623631073:android:31594358a3a6d18c",
+        "mobilesdk_app_id": "1:602623631073:android:0ea748e0d7c85cda69a1a0",
         "android_client_info": {
-          "package_name": "com.example.zerdaly_business_app"
+          "package_name": "com.zerdaly.zerdaly_business_app"
         }
       },
       "oauth_client": [
@@ -51,6 +54,9 @@
       "api_key": [
         {
           "current_key": "AIzaSyBWQBUDP3az8cRxwu9NSng6CybhkmwOmo8"
+        },
+        {
+          "current_key": "AIzaSyAxGAEG38traBe87IBnlCbx1QYfPB_h54g"
         }
       ],
       "services": {

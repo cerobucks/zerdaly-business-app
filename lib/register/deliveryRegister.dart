@@ -86,21 +86,22 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 18),
+              fontSize: screenInfo.size.width / 20),
+              textAlign: TextAlign.center,
         ),
         Text(
           'Para empezar nececitamos:',
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 18),
+              fontSize: screenInfo.size.width / 20),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
         ),
         Container(
             width: screenInfo.size.width,
-            height: screenInfo.size.height / 1.4,
+            height: screenInfo.size.height / 1.3,
             padding: EdgeInsets.all(10),
             child: Card(
               child: Padding(
@@ -112,7 +113,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Tu nombre',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width / 22,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -122,7 +123,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                         hintText: 'Ej: Juan',
                         hintStyle: TextStyle(
                           fontFamily: 'Kanit',
-                          fontSize: screenInfo.size.width / 21,
+                          fontSize: screenInfo.size.width / 22,
                         ),
                       ),
                     ),
@@ -131,7 +132,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Tu apellido',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width / 22,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -141,7 +142,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                         hintText: 'Ej: Bosch',
                         hintStyle: TextStyle(
                           fontFamily: 'Kanit',
-                          fontSize: screenInfo.size.width / 21,
+                          fontSize: screenInfo.size.width / 22,
                         ),
                       ),
                     ),
@@ -150,7 +151,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Tu Email',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width / 22,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -166,7 +167,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                           hintText: 'Ej: juan@mail.com',
                           hintStyle: TextStyle(
                             fontFamily: 'Kanit',
-                            fontSize: screenInfo.size.width / 21,
+                            fontSize: screenInfo.size.width / 22,
                           ),
                           errorText: fixEmail
                               ? "Este email ya esta en uso."
@@ -177,7 +178,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Contraseña',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width / 22,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -188,7 +189,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                         hintText: 'Tu contraseña',
                         hintStyle: TextStyle(
                           fontFamily: 'Kanit',
-                          fontSize: screenInfo.size.width / 21,
+                          fontSize: screenInfo.size.width / 22,
                         ),
                       ),
                     ),
@@ -197,12 +198,12 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Fecha de nacimiento',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width / 22,
                         fontFamily: 'Kanit',
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 5),
+                      padding: EdgeInsets.only(top: 2),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -220,7 +221,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                               hintText: 'Día',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21,
+                                fontSize: screenInfo.size.width / 22,
                               ),
                               counterText: "",
                             ),
@@ -238,7 +239,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                               hintText: 'Mes',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21,
+                                fontSize: screenInfo.size.width / 22,
                               ),
                               counterText: "",
                             ),
@@ -257,7 +258,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                               hintText: 'Año',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21,
+                                fontSize: screenInfo.size.width / 22,
                               ),
                               counterText: "",
                             ),
@@ -352,7 +353,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
               fontSize: screenInfo.size.width / 18),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 15),
         ),
         //Selfie
         GestureDetector(
@@ -382,12 +383,12 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 18)),
+                                fontSize: screenInfo.size.width / 20)),
                         Text('Tómate una selfie',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21)),
+                                fontSize: screenInfo.size.width / 22)),
                       ],
                     )
                   ],
@@ -425,12 +426,12 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('Cédula',
+                        Text('Tu Cédula',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 18)),
-                        Text('Identificación personal',
+                                fontSize: screenInfo.size.width / 20)),
+                        Text('Foto de Cédula',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
@@ -471,16 +472,16 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('Motor',
+                        Text('Tu motor',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 18)),
-                        Text('Foto de tu motor.',
+                                fontSize: screenInfo.size.width / 20)),
+                        Text('Foto de motor.',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21)),
+                                fontSize: screenInfo.size.width / 22)),
                       ],
                     )
                   ],
@@ -537,6 +538,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
   }
 
   pageTwoValidation() {
+
     if (!faceImgValidated) {
       errorMessage("Debes subir una selfie.");
     } else if (!idImgValidated) {
@@ -651,14 +653,15 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 18),
+              fontSize: screenInfo.size.width / 20),
+              textAlign: TextAlign.center,
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
         ),
         Container(
             width: screenInfo.size.width,
-            height: screenInfo.size.height / 3,
+            height: screenInfo.size.height / 2.7,
             padding: EdgeInsets.all(10),
             child: Card(
                 child: Padding(
@@ -738,7 +741,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Kanit',
-                        fontSize: screenInfo.size.width / 19),
+                        fontSize: screenInfo.size.width / 22),
                   ),
                 ),
               ),
