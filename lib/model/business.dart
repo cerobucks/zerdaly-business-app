@@ -152,6 +152,7 @@ class Business {
     List response = new List(3);
     await http.post(url + "cancel/subscription",
         headers: {HttpHeaders.authorizationHeader: token}).then((res) {
+      
       final result = json.decode(res.body);
       response[0] = result["code"];
       response[1] = result["status"];
@@ -165,6 +166,7 @@ class Business {
     List response = new List(3);
     await http.put(url + "renew/subscription",
         headers: {HttpHeaders.authorizationHeader: token}).then((res) {
+
       final result = json.decode(res.body);
       response[0] = result["code"];
       response[1] = result["status"];
