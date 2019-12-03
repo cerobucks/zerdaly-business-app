@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:zerdaly_business_app/Token.dart';
 import 'package:zerdaly_business_app/business_views/general.dart';
 import 'package:zerdaly_business_app/model/business.dart';
@@ -101,22 +102,22 @@ class BusinessRegisterState extends State<BusinessRegister> {
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 19),
-              textAlign: TextAlign.center,
+              fontSize: screenInfo.size.width * 0.045),
+          textAlign: TextAlign.center,
         ),
         Text(
           'Para empezar nececitamos:',
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 19),
+              fontSize: screenInfo.size.width * 0.045),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
         ),
         Container(
             width: screenInfo.size.width,
-            height: screenInfo.size.height / 1.5,
+            height: screenInfo.size.height * 0.70,
             padding: EdgeInsets.all(10),
             child: Card(
               child: Padding(
@@ -128,17 +129,17 @@ class BusinessRegisterState extends State<BusinessRegister> {
                       'Tu nombre',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
                     TextField(
                       controller: name,
                       decoration: InputDecoration(
-                        hintText: 'Ej: Juan Bosch',
+                        hintText: 'Ej: Juan Gomez',
                         hintStyle: TextStyle(
                           fontFamily: 'Kanit',
-                          fontSize: screenInfo.size.width / 21,
+                          fontSize: screenInfo.size.width * 0.045,
                         ),
                       ),
                     ),
@@ -147,7 +148,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                       'Tu Email',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -163,7 +164,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                           hintText: 'Ej: juan@mail.com',
                           hintStyle: TextStyle(
                             fontFamily: 'Kanit',
-                            fontSize: screenInfo.size.width / 21,
+                            fontSize: screenInfo.size.width * 0.045,
                           ),
                           errorText: fixEmail
                               ? "Este email ya esta en uso."
@@ -174,7 +175,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                       'Contraseña',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -185,7 +186,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                         hintText: 'Tu contraseña',
                         hintStyle: TextStyle(
                           fontFamily: 'Kanit',
-                          fontSize: screenInfo.size.width / 21,
+                          fontSize: screenInfo.size.width * 0.045,
                         ),
                       ),
                     ),
@@ -194,7 +195,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                       'Fecha de nacimiento',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 20,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -208,7 +209,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
 
                         //day TextField
                         Container(
-                          width: screenInfo.size.width / 9,
+                          width: screenInfo.size.width * 0.10,
                           child: TextField(
                             controller: bday,
                             maxLength: 2,
@@ -217,7 +218,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                               hintText: 'Día',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21,
+                                fontSize: screenInfo.size.width * 0.045,
                               ),
                               counterText: "",
                             ),
@@ -226,7 +227,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                         Spacer(),
                         //Month TextField
                         Container(
-                          width: screenInfo.size.width / 9,
+                          width: screenInfo.size.width * 0.10,
                           child: TextField(
                             controller: bmonth,
                             maxLength: 2,
@@ -245,7 +246,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
 
                         //Year TextField
                         Container(
-                          width: screenInfo.size.width / 5,
+                          width: screenInfo.size.width * 0.20,
                           child: TextField(
                             controller: byear,
                             maxLength: 4,
@@ -254,7 +255,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                               hintText: 'Año',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21,
+                                fontSize: screenInfo.size.width * 0.045,
                               ),
                               counterText: "",
                             ),
@@ -269,8 +270,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
             )),
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 3,
-            height: screenInfo.size.height / 14,
+            width: screenInfo.size.width * 0.40,
+            height: screenInfo.size.height * 0.07,
             child: Center(
               child: Card(
                 color: Color.fromRGBO(255, 144, 82, 1),
@@ -280,7 +281,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Kanit',
-                        fontSize: screenInfo.size.width / 19),
+                        fontSize: screenInfo.size.width * 0.045),
                   ),
                 ),
               ),
@@ -295,6 +296,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
   }
 
   pageOneValidation() {
+    
     if (name.text.isEmpty ||
         email.text.isEmpty ||
         email.text.isEmpty ||
@@ -345,7 +347,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 18),
+              fontSize: screenInfo.size.width * 0.045),
         ),
         Padding(
           padding: EdgeInsets.only(top: 20),
@@ -353,8 +355,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
         //Selfie
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 1.4,
-            height: screenInfo.size.height / 6,
+            width: screenInfo.size.width * 0.75,
+            height: screenInfo.size.height * 0.18,
             child: Card(
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -362,7 +364,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   children: <Widget>[
                     Icon(
                       Icons.face,
-                      size: screenInfo.size.width / 6,
+                      size: screenInfo.size.width * 0.20,
                       color: !faceImgValidated
                           ? Color.fromRGBO(255, 144, 82, 1)
                           : Colors.green,
@@ -378,12 +380,12 @@ class BusinessRegisterState extends State<BusinessRegister> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 18)),
+                                fontSize: screenInfo.size.width * 0.05)),
                         Text('Tómate una selfie',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 22)),
+                                fontSize: screenInfo.size.width * 0.04)),
                       ],
                     )
                   ],
@@ -400,8 +402,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
         //Cedula de identidad
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 1.4,
-            height: screenInfo.size.height / 6,
+            width: screenInfo.size.width * 0.75,
+            height: screenInfo.size.height * 0.18,
             child: Card(
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -409,7 +411,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   children: <Widget>[
                     Icon(
                       Icons.person_pin,
-                      size: screenInfo.size.width / 6,
+                      size: screenInfo.size.width * 0.20,
                       color: !idImgValidated
                           ? Color.fromRGBO(255, 144, 82, 1)
                           : Colors.green,
@@ -425,12 +427,12 @@ class BusinessRegisterState extends State<BusinessRegister> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 18)),
+                                fontSize: screenInfo.size.width * 0.05)),
                         Text('Foto de Cédula',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 22)),
+                                fontSize: screenInfo.size.width * 0.04)),
                       ],
                     ),
                   ],
@@ -461,8 +463,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
         ),
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 3,
-            height: screenInfo.size.height / 14,
+            width: screenInfo.size.width * 0.40,
+            height: screenInfo.size.height * 0.07,
             child: Center(
               child: Card(
                 color: Color.fromRGBO(255, 144, 82, 1),
@@ -513,7 +515,6 @@ class BusinessRegisterState extends State<BusinessRegister> {
         faceImg = img;
         faceImgValidated = true;
         imageBeingProcessed = false;
-        
       } else {
         errorMessage("La foto debe ser de tu cara.");
         faceImgValidated = false;
@@ -569,15 +570,15 @@ class BusinessRegisterState extends State<BusinessRegister> {
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 19),
-              textAlign: TextAlign.center,
+              fontSize: screenInfo.size.width * 0.045),
+          textAlign: TextAlign.center,
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
         ),
         Container(
             width: screenInfo.size.width,
-            height: screenInfo.size.height / 1.4,
+            height: screenInfo.size.height * 0.70,
             padding: EdgeInsets.all(10),
             child: Card(
                 child: Padding(
@@ -589,7 +590,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                             'Nombre del negocio',
                             style: TextStyle(
                               color: Colors.grey[700],
-                              fontSize: screenInfo.size.width / 20,
+                              fontSize: screenInfo.size.width * 0.045,
                               fontFamily: 'Kanit',
                             ),
                           ),
@@ -604,7 +605,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                                 hintText: 'Ej: Zerdaly',
                                 hintStyle: TextStyle(
                                   fontFamily: 'Kanit',
-                                  fontSize: screenInfo.size.width / 21,
+                                  fontSize: screenInfo.size.width * 0.045,
                                 ),
                                 errorText: fixBusinessName
                                     ? "Este nombre de negocio ya esta en uso. "
@@ -615,7 +616,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                             'Número de teléfono',
                             style: TextStyle(
                               color: Colors.grey[700],
-                              fontSize: screenInfo.size.width / 20,
+                              fontSize: screenInfo.size.width * 0.045,
                               fontFamily: 'Kanit',
                             ),
                           ),
@@ -627,7 +628,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                               hintText: 'Ej: 8092461925',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21,
+                                fontSize: screenInfo.size.width * 0.045,
                               ),
                               counterText: "",
                             ),
@@ -637,7 +638,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                             'Dirección del negocio',
                             style: TextStyle(
                               color: Colors.grey[700],
-                              fontSize: screenInfo.size.width / 20,
+                              fontSize: screenInfo.size.width * 0.045,
                               fontFamily: 'Kanit',
                             ),
                           ),
@@ -647,7 +648,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                               hintText: 'Ej: Calle quita, edificio...',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21,
+                                fontSize: screenInfo.size.width * 0.045,
                               ),
                             ),
                           ),
@@ -656,22 +657,30 @@ class BusinessRegisterState extends State<BusinessRegister> {
                             'Ciudad',
                             style: TextStyle(
                               color: Colors.grey[700],
-                              fontSize: screenInfo.size.width / 20,
+                              fontSize: screenInfo.size.width * 0.045,
                               fontFamily: 'Kanit',
                             ),
                           ),
                           Row(
                             children: <Widget>[
                               DropdownButton<String>(
-                                  items: <String>['San Pedro de Macoris']
-                                      .map((String value) {
+                                  items: <String>[
+                                    'Santo Domingo',
+                                    'Santiago',
+                                    'San Pedro de Macoris',
+                                    'La Altagracia',
+                                    'La Romana',
+                                    'La Vega',
+                                    'Puerto Plata'
+                                  ].map((String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Text(
                                         value,
                                         style: TextStyle(
-                                          fontFamily: 'Kanit',
-                                        ),
+                                            fontFamily: 'Kanit',
+                                            fontSize:
+                                                screenInfo.size.width * 0.045),
                                       ),
                                     );
                                   }).toList(),
@@ -683,16 +692,17 @@ class BusinessRegisterState extends State<BusinessRegister> {
                                   hint: Text(
                                     city == "" ? "Tu ciudad" : city,
                                     style: TextStyle(
-                                      fontFamily: 'Kanit',
-                                    ),
+                                        fontFamily: 'Kanit',
+                                        fontSize:
+                                            screenInfo.size.width * 0.045),
                                   )),
                             ],
                           )
                         ])))),
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 3,
-            height: screenInfo.size.height / 14,
+            width: screenInfo.size.width * 0.40,
+            height: screenInfo.size.height * 0.07,
             child: Center(
               child: Card(
                 color: Color.fromRGBO(255, 144, 82, 1),
@@ -857,7 +867,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
               style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 18),
+                  fontSize: screenInfo.size.width * 0.045),
             ),
           ),
           Padding(
@@ -869,8 +879,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   Spacer(),
                   GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2.6,
-                      height: screenInfo.size.height / 4.5,
+                      width: screenInfo.size.width * 0.38,
+                      height: screenInfo.size.height * 0.23,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: category == "Accesorios"
@@ -887,11 +897,11 @@ class BusinessRegisterState extends State<BusinessRegister> {
                               style: TextStyle(
                                   fontFamily: 'Kanit',
                                   color: Colors.grey[600],
-                                  fontSize: screenInfo.size.width / 20),
+                                  fontSize: screenInfo.size.width * 0.045),
                             ),
                             Icon(
                               Icons.headset,
-                              size: screenInfo.size.width / 4.5,
+                              size: screenInfo.size.width * 0.24,
                               color: Color.fromRGBO(255, 144, 82, 1),
                             ),
                             Spacer(),
@@ -908,8 +918,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   Spacer(),
                   GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2.6,
-                      height: screenInfo.size.height / 4.5,
+                      width: screenInfo.size.width * 0.38,
+                      height: screenInfo.size.height * 0.23,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: category == "Belleza"
@@ -926,11 +936,11 @@ class BusinessRegisterState extends State<BusinessRegister> {
                               style: TextStyle(
                                   fontFamily: 'Kanit',
                                   color: Colors.grey[600],
-                                  fontSize: screenInfo.size.width / 20),
+                                  fontSize: screenInfo.size.width * 0.045),
                             ),
                             Icon(
                               Icons.color_lens,
-                              size: screenInfo.size.width / 4.5,
+                              size: screenInfo.size.width * 0.24,
                               color: Color.fromRGBO(255, 144, 82, 1),
                             ),
                             Spacer(),
@@ -956,8 +966,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   Spacer(),
                   GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2.6,
-                      height: screenInfo.size.height / 4.5,
+                      width: screenInfo.size.width * 0.38,
+                      height: screenInfo.size.height * 0.23,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: category == "Comida"
@@ -974,11 +984,11 @@ class BusinessRegisterState extends State<BusinessRegister> {
                               style: TextStyle(
                                   fontFamily: 'Kanit',
                                   color: Colors.grey[600],
-                                  fontSize: screenInfo.size.width / 20),
+                                  fontSize: screenInfo.size.width * 0.045),
                             ),
                             Icon(
                               Icons.fastfood,
-                              size: screenInfo.size.width / 4.5,
+                              size: screenInfo.size.width * 0.24,
                               color: Color.fromRGBO(255, 144, 82, 1),
                             ),
                             Spacer(),
@@ -995,8 +1005,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   Spacer(),
                   GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2.6,
-                      height: screenInfo.size.height / 4.5,
+                      width: screenInfo.size.width * 0.38,
+                      height: screenInfo.size.height * 0.23,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: category == "Vestimentas"
@@ -1013,11 +1023,11 @@ class BusinessRegisterState extends State<BusinessRegister> {
                               style: TextStyle(
                                   fontFamily: 'Kanit',
                                   color: Colors.grey[600],
-                                  fontSize: screenInfo.size.width / 20),
+                                  fontSize: screenInfo.size.width * 0.045),
                             ),
                             Icon(
                               Icons.accessibility_new,
-                              size: screenInfo.size.width / 4.5,
+                              size: screenInfo.size.width * 0.23,
                               color: Color.fromRGBO(255, 144, 82, 1),
                             ),
                             Spacer(),
@@ -1041,7 +1051,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
               style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 18),
+                  fontSize: screenInfo.size.width * 0.045),
             ),
           ),
           Padding(
@@ -1053,8 +1063,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   Spacer(),
                   GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2.6,
-                      height: screenInfo.size.height / 13,
+                      width: screenInfo.size.width * 0.38,
+                      height: screenInfo.size.height * 0.08,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: shippingTime == "30 mins"
@@ -1068,7 +1078,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                           style: TextStyle(
                               fontFamily: 'Kanit',
                               color: Colors.grey[600],
-                              fontSize: screenInfo.size.width / 20),
+                              fontSize: screenInfo.size.width * 0.045),
                         ),
                       )),
                     ),
@@ -1081,8 +1091,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   Spacer(),
                   GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2.6,
-                      height: screenInfo.size.height / 13,
+                      width: screenInfo.size.width * 0.38,
+                      height: screenInfo.size.height * 0.08,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: shippingTime == "60 mins"
@@ -1096,7 +1106,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                           style: TextStyle(
                               fontFamily: 'Kanit',
                               color: Colors.grey[600],
-                              fontSize: screenInfo.size.width / 20),
+                              fontSize: screenInfo.size.width * 0.045),
                         ),
                       )),
                     ),
@@ -1118,8 +1128,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   Spacer(),
                   GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2.6,
-                      height: screenInfo.size.height / 13,
+                      width: screenInfo.size.width * 0.38,
+                      height: screenInfo.size.height * 0.08,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: shippingTime == "1 a 12 horas"
@@ -1133,7 +1143,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                           style: TextStyle(
                               fontFamily: 'Kanit',
                               color: Colors.grey[600],
-                              fontSize: screenInfo.size.width / 20),
+                              fontSize: screenInfo.size.width * 0.045),
                         ),
                       )),
                     ),
@@ -1146,8 +1156,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   Spacer(),
                   GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2.6,
-                      height: screenInfo.size.height / 13,
+                      width: screenInfo.size.width * 0.38,
+                      height: screenInfo.size.height * 0.08,
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: shippingTime == "12 a 24 horas"
@@ -1161,7 +1171,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                           style: TextStyle(
                               fontFamily: 'Kanit',
                               color: Colors.grey[600],
-                              fontSize: screenInfo.size.width / 19),
+                              fontSize: screenInfo.size.width * 0.045),
                         ),
                       )),
                     ),
@@ -1181,8 +1191,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
             alignment: Alignment.center,
             child: GestureDetector(
               child: Container(
-                width: screenInfo.size.width / 3,
-                height: screenInfo.size.height / 14,
+                width: screenInfo.size.width * 0.40,
+                height: screenInfo.size.height * 0.07,
                 child: Center(
                   child: Card(
                     color: Color.fromRGBO(255, 144, 82, 1),
@@ -1192,7 +1202,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                         style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Kanit',
-                            fontSize: screenInfo.size.width / 19),
+                            fontSize: screenInfo.size.width * 0.045),
                       ),
                     ),
                   ),
@@ -1232,7 +1242,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
               style: TextStyle(
                 color: Color.fromRGBO(255, 144, 82, 1),
                 fontFamily: 'Pacifico',
-                fontSize: screenInfo.size.width / 6,
+                fontSize: screenInfo.size.width * 0.12,
               ),
             ),
           ),
@@ -1242,7 +1252,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
               style: TextStyle(
                 color: Color.fromRGBO(255, 144, 82, 1),
                 fontFamily: 'Kanit',
-                fontSize: screenInfo.size.width / 18,
+                fontSize: screenInfo.size.width * 0.05,
               ),
             ),
           ),
@@ -1252,7 +1262,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
               style: TextStyle(
                 color: Color.fromRGBO(255, 144, 82, 1),
                 fontFamily: 'Kanit',
-                fontSize: screenInfo.size.width / 18,
+                fontSize: screenInfo.size.width * 0.045,
               ),
             ),
           ),
@@ -1267,7 +1277,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                     color: Colors.grey[600],
                     fontFamily: 'Kanit',
-                    fontSize: screenInfo.size.width / 20,
+                    fontSize: screenInfo.size.width * 0.045,
                     fontWeight: FontWeight.w800),
                 textAlign: TextAlign.center,
               ),
@@ -1276,7 +1286,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                   color: Colors.grey[500],
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 20,
+                  fontSize: screenInfo.size.width * 0.045,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1293,7 +1303,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                     color: Colors.grey[600],
                     fontFamily: 'Kanit',
-                    fontSize: screenInfo.size.width / 16,
+                    fontSize: screenInfo.size.width * 0.05,
                     fontWeight: FontWeight.w800),
                 textAlign: TextAlign.center,
               ),
@@ -1302,7 +1312,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                   color: Colors.grey[500],
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 20,
+                  fontSize: screenInfo.size.width * 0.04,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1314,7 +1324,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
               style: TextStyle(
                   color: Colors.grey[600],
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 20,
+                  fontSize: screenInfo.size.width * 0.045,
                   fontWeight: FontWeight.w800),
               textAlign: TextAlign.center,
             ),
@@ -1331,7 +1341,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   style: TextStyle(
                       color: Colors.grey[600],
                       fontFamily: 'Kanit',
-                      fontSize: screenInfo.size.width / 20,
+                      fontSize: screenInfo.size.width * 0.04,
                       fontWeight: FontWeight.w800),
                   textAlign: TextAlign.center,
                 ),
@@ -1340,7 +1350,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   style: TextStyle(
                     color: Colors.grey[500],
                     fontFamily: 'Kanit',
-                    fontSize: screenInfo.size.width / 25,
+                    fontSize: screenInfo.size.width * 0.035,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -1356,7 +1366,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   style: TextStyle(
                       color: Colors.grey[600],
                       fontFamily: 'Kanit',
-                      fontSize: screenInfo.size.width / 20,
+                      fontSize: screenInfo.size.width * 0.035,
                       fontWeight: FontWeight.w800),
                   textAlign: TextAlign.center,
                 ),
@@ -1365,7 +1375,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   style: TextStyle(
                     color: Colors.grey[500],
                     fontFamily: 'Kanit',
-                    fontSize: screenInfo.size.width / 26,
+                    fontSize: screenInfo.size.width * 0.035,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -1381,7 +1391,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   style: TextStyle(
                       color: Colors.grey[600],
                       fontFamily: 'Kanit',
-                      fontSize: screenInfo.size.width / 20,
+                      fontSize: screenInfo.size.width * 0.04,
                       fontWeight: FontWeight.w800),
                   textAlign: TextAlign.center,
                 ),
@@ -1390,7 +1400,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                   style: TextStyle(
                     color: Colors.grey[500],
                     fontFamily: 'Kanit',
-                    fontSize: screenInfo.size.width / 27,
+                    fontSize: screenInfo.size.width * 0.035,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -1408,7 +1418,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                   color: Colors.grey[500],
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 22,
+                  fontSize: screenInfo.size.width * 0.045,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1417,7 +1427,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                     color: Colors.grey[600],
                     fontFamily: 'Kanit',
-                    fontSize: screenInfo.size.width / 21,
+                    fontSize: screenInfo.size.width * 0.045,
                     fontWeight: FontWeight.w800),
                 textAlign: TextAlign.center,
               ),
@@ -1431,7 +1441,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                   color: Colors.grey[500],
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 22,
+                  fontSize: screenInfo.size.width * 0.045,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -1440,7 +1450,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                     color: Colors.grey[600],
                     fontFamily: 'Kanit',
-                    fontSize: screenInfo.size.width / 21,
+                    fontSize: screenInfo.size.width * 0.045,
                     fontWeight: FontWeight.w800),
                 textAlign: TextAlign.center,
               ),
@@ -1449,7 +1459,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
                 style: TextStyle(
                   color: Colors.grey[500],
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 20,
+                  fontSize: screenInfo.size.width * 0.045,
                 ),
                 textAlign: TextAlign.center,
               )
@@ -1464,7 +1474,7 @@ class BusinessRegisterState extends State<BusinessRegister> {
               style: TextStyle(
                   color: Colors.grey[600],
                   fontFamily: 'Kanit',
-                  fontSize: screenInfo.size.width / 19,
+                  fontSize: screenInfo.size.width * 0.045,
                   fontWeight: FontWeight.w800),
               textAlign: TextAlign.center,
             ),
@@ -1475,31 +1485,59 @@ class BusinessRegisterState extends State<BusinessRegister> {
               style: TextStyle(
                 color: Colors.grey[500],
                 fontFamily: 'Kanit',
-                fontSize: screenInfo.size.width / 22,
+                fontSize: screenInfo.size.width * 0.045,
               ),
               textAlign: TextAlign.center,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 2),
+            padding: EdgeInsets.only(top: 3),
+          ),
+          Center(
+            child: Column(children: <Widget>[
+              Text(
+              'Al registrarme estoy de acuerdo con los ',
+              style: TextStyle(
+                color: Colors.grey[500],
+                fontFamily: 'Kanit',
+                fontSize: screenInfo.size.width * 0.025,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            GestureDetector(child: Text(
+              'Terminos y Condiciones.',
+              style: TextStyle(
+                color: Colors.orange,
+                fontFamily: 'Kanit',
+                fontSize: screenInfo.size.width * 0.03,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            onTap: (){
+              _launchURL();
+            },)
+            ],),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 5),
           ),
           !registerProcess
               ? Align(
                   alignment: Alignment.center,
                   child: GestureDetector(
                     child: Container(
-                      width: screenInfo.size.width / 2,
-                      height: screenInfo.size.height / 14,
+                      width: screenInfo.size.width * 0.40,
+                      height: screenInfo.size.height * 0.07,
                       child: Center(
                         child: Card(
                           color: Color.fromRGBO(255, 144, 82, 1),
                           child: Center(
                             child: Text(
-                              '¡Quiero registrarme!',
+                              'Registrarme',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Kanit',
-                                  fontSize: screenInfo.size.width / 25),
+                                  fontSize: screenInfo.size.width * 0.045),
                             ),
                           ),
                         ),
@@ -1515,7 +1553,14 @@ class BusinessRegisterState extends State<BusinessRegister> {
       )),
     );
   }
-
+_launchURL() async {
+  const url = 'https://zerdaly.com/terms.html';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
   int categoryId = 1;
   register() async {
     setState(() {
@@ -1536,8 +1581,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
         break;
     }
 
-    await CompressImage.compress(imageSrc: faceImg.path,desiredQuality: 85);
-    await CompressImage.compress(imageSrc: idImg.path,desiredQuality: 85);
+    await CompressImage.compress(imageSrc: faceImg.path, desiredQuality: 85);
+    await CompressImage.compress(imageSrc: idImg.path, desiredQuality: 85);
 
     String bs64FaceImg = base64Encode(faceImg.readAsBytesSync());
     String bs64IdImg = base64Encode(idImg.readAsBytesSync());
@@ -1550,7 +1595,11 @@ class BusinessRegisterState extends State<BusinessRegister> {
       'business_name': businessName.text,
       'email': email.text.toLowerCase().toString(),
       'password': password.text,
-      'dob': bday.text.toString() + "/" + bmonth.text.toString() + "/" + byear.text.toString(),
+      'dob': bday.text.toString() +
+          "/" +
+          bmonth.text.toString() +
+          "/" +
+          byear.text.toString(),
       'city': city,
       'phone': businessPhone.text.toString(),
       'category_id': categoryId.toString(),
@@ -1562,7 +1611,6 @@ class BusinessRegisterState extends State<BusinessRegister> {
       'face_image': bs64FaceImg,
     };
     final result = await business.register(data);
-
 
     if (result[0] == 200) {
       saveToken(result[4]["token"].toString());
@@ -1583,8 +1631,8 @@ class BusinessRegisterState extends State<BusinessRegister> {
       } else {
         errorMessage("Ha ocurrido error, Intentalo de nuevo.");
       }
-    }else{
-        errorMessage("Ha ocurrido error, Intentalo de nuevo.");
+    } else {
+      errorMessage("Ha ocurrido error, Intentalo de nuevo.");
     }
 
     setState(() {

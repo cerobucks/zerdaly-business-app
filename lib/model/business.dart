@@ -263,6 +263,24 @@ class Business {
     return response;
   }
 
+    Future<List> getUserLocation(int id, String token) async {
+    List response = new List(3);
+    await http.post("https://api.zerdaly.com/api/user/getlocation", body: {
+      'json': json.encode({
+        'id': id,
+      })
+    }, headers: {
+      HttpHeaders.authorizationHeader: token
+    }).then((res) {
+      final result = json.decode(res.body);
+      response[0] = result["code"];
+      response[1] = result["status"];
+      response[2] = result["message"];
+    }).then((error) {});
+
+    return response;
+  }
+
   Future<List> getDelivery(int id, String token) async {
     List response = new List(3);
     await http.post("https://api.zerdaly.com/api/delivery/getdelivery", body: {
@@ -301,6 +319,24 @@ class Business {
       'json': json.encode({
         'delivery_id': deliveryId,
         'order_id': orderId,
+      })
+    }, headers: {
+      HttpHeaders.authorizationHeader: token
+    }).then((res) {
+      final result = json.decode(res.body);
+      response[0] = result["code"];
+      response[1] = result["status"];
+      response[2] = result["message"];
+    }).then((error) {});
+
+    return response;
+  }
+
+  Future<List> shippingSent(int id, String token) async {
+    List response = new List(3);
+    await http.post(url + "shipping/sent", body: {
+      'json': json.encode({
+        'order_id': id,
       })
     }, headers: {
       HttpHeaders.authorizationHeader: token

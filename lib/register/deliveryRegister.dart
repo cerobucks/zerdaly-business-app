@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:zerdaly_business_app/Token.dart';
 import 'package:zerdaly_business_app/delivery_views/general.dart';
 import 'package:zerdaly_business_app/model/delivery.dart';
@@ -86,22 +87,22 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 20),
-              textAlign: TextAlign.center,
+              fontSize: screenInfo.size.width * 0.045),
+          textAlign: TextAlign.center,
         ),
         Text(
           'Para empezar nececitamos:',
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 20),
+              fontSize: screenInfo.size.width * 0.045),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
         ),
         Container(
             width: screenInfo.size.width,
-            height: screenInfo.size.height / 1.3,
+            height: screenInfo.size.height * 0.75,
             padding: EdgeInsets.all(10),
             child: Card(
               child: Padding(
@@ -113,7 +114,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Tu nombre',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 22,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -123,7 +124,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                         hintText: 'Ej: Juan',
                         hintStyle: TextStyle(
                           fontFamily: 'Kanit',
-                          fontSize: screenInfo.size.width / 22,
+                          fontSize: screenInfo.size.width * 0.045,
                         ),
                       ),
                     ),
@@ -132,7 +133,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Tu apellido',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 22,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -142,7 +143,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                         hintText: 'Ej: Bosch',
                         hintStyle: TextStyle(
                           fontFamily: 'Kanit',
-                          fontSize: screenInfo.size.width / 22,
+                          fontSize: screenInfo.size.width * 0.045,
                         ),
                       ),
                     ),
@@ -151,7 +152,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Tu Email',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 22,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -167,7 +168,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                           hintText: 'Ej: juan@mail.com',
                           hintStyle: TextStyle(
                             fontFamily: 'Kanit',
-                            fontSize: screenInfo.size.width / 22,
+                            fontSize: screenInfo.size.width * 0.045,
                           ),
                           errorText: fixEmail
                               ? "Este email ya esta en uso."
@@ -178,7 +179,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Contraseña',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 22,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -189,7 +190,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                         hintText: 'Tu contraseña',
                         hintStyle: TextStyle(
                           fontFamily: 'Kanit',
-                          fontSize: screenInfo.size.width / 22,
+                          fontSize: screenInfo.size.width * 0.045,
                         ),
                       ),
                     ),
@@ -198,7 +199,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                       'Fecha de nacimiento',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: screenInfo.size.width / 22,
+                        fontSize: screenInfo.size.width * 0.045,
                         fontFamily: 'Kanit',
                       ),
                     ),
@@ -212,7 +213,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
 
                         //day TextField
                         Container(
-                          width: screenInfo.size.width / 9,
+                          width: screenInfo.size.width * 0.10,
                           child: TextField(
                             controller: bday,
                             maxLength: 2,
@@ -221,7 +222,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                               hintText: 'Día',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 22,
+                                fontSize: screenInfo.size.width * 0.045,
                               ),
                               counterText: "",
                             ),
@@ -230,7 +231,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                         Spacer(),
                         //Month TextField
                         Container(
-                          width: screenInfo.size.width / 9,
+                          width: screenInfo.size.width * 0.10,
                           child: TextField(
                             controller: bmonth,
                             maxLength: 2,
@@ -239,7 +240,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                               hintText: 'Mes',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 22,
+                                fontSize: screenInfo.size.width * 0.045,
                               ),
                               counterText: "",
                             ),
@@ -249,7 +250,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
 
                         //Year TextField
                         Container(
-                          width: screenInfo.size.width / 5,
+                          width: screenInfo.size.width * 0.20,
                           child: TextField(
                             controller: byear,
                             maxLength: 4,
@@ -258,7 +259,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                               hintText: 'Año',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 22,
+                                fontSize: screenInfo.size.width * 0.045,
                               ),
                               counterText: "",
                             ),
@@ -273,8 +274,8 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
             )),
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 3,
-            height: screenInfo.size.height / 14,
+            width: screenInfo.size.width * 0.40,
+            height: screenInfo.size.height * 0.07,
             child: Center(
               child: Card(
                 color: Color.fromRGBO(255, 144, 82, 1),
@@ -284,7 +285,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Kanit',
-                        fontSize: screenInfo.size.width / 19),
+                        fontSize: screenInfo.size.width * 0.045),
                   ),
                 ),
               ),
@@ -299,6 +300,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
   }
 
   pageOneValidation() {
+    
     if (name.text.isEmpty ||
         lastName.text.isEmpty ||
         email.text.isEmpty ||
@@ -350,7 +352,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 18),
+              fontSize: screenInfo.size.width * 0.045),
         ),
         Padding(
           padding: EdgeInsets.only(top: 15),
@@ -358,8 +360,8 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
         //Selfie
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 1.4,
-            height: screenInfo.size.height / 6,
+            width: screenInfo.size.width * 0.75,
+            height: screenInfo.size.height * 0.20,
             child: Card(
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -367,7 +369,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                   children: <Widget>[
                     Icon(
                       Icons.face,
-                      size: screenInfo.size.width / 6,
+                      size: screenInfo.size.width * 0.20,
                       color: !faceImgValidated
                           ? Color.fromRGBO(255, 144, 82, 1)
                           : Colors.green,
@@ -383,12 +385,12 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 20)),
+                                fontSize: screenInfo.size.width * 0.05)),
                         Text('Tómate una selfie',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 22)),
+                                fontSize: screenInfo.size.width * 0.04)),
                       ],
                     )
                   ],
@@ -405,8 +407,8 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
         //Cedula de identidad
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 1.4,
-            height: screenInfo.size.height / 6,
+            width: screenInfo.size.width * 0.75,
+            height: screenInfo.size.height * 0.20,
             child: Card(
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -414,7 +416,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                   children: <Widget>[
                     Icon(
                       Icons.person_pin,
-                      size: screenInfo.size.width / 6,
+                      size: screenInfo.size.width * 0.20,
                       color: !idImgValidated
                           ? Color.fromRGBO(255, 144, 82, 1)
                           : Colors.green,
@@ -430,12 +432,12 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 20)),
+                                fontSize: screenInfo.size.width * 0.05)),
                         Text('Foto de Cédula',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21)),
+                                fontSize: screenInfo.size.width * 0.04)),
                       ],
                     ),
                   ],
@@ -451,8 +453,8 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
         ),
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 1.4,
-            height: screenInfo.size.height / 6,
+            width: screenInfo.size.width * 0.75,
+            height: screenInfo.size.height * 0.20,
             child: Card(
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -460,7 +462,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                   children: <Widget>[
                     Icon(
                       Icons.motorcycle,
-                      size: screenInfo.size.width / 6,
+                      size: screenInfo.size.width * 0.20,
                       color: !motoImgValidated
                           ? Color.fromRGBO(255, 144, 82, 1)
                           : Colors.green,
@@ -476,12 +478,12 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 20)),
+                                fontSize: screenInfo.size.width * 0.05)),
                         Text('Foto de motor.',
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 22)),
+                                fontSize: screenInfo.size.width * 0.04)),
                       ],
                     )
                   ],
@@ -512,8 +514,8 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
         ),
         GestureDetector(
           child: Container(
-            width: screenInfo.size.width / 3,
-            height: screenInfo.size.height / 14,
+            width: screenInfo.size.width * 0.40,
+            height: screenInfo.size.height * 0.07,
             child: Center(
               child: Card(
                 color: Color.fromRGBO(255, 144, 82, 1),
@@ -523,7 +525,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Kanit',
-                        fontSize: screenInfo.size.width / 19),
+                        fontSize: screenInfo.size.width * 0.045),
                   ),
                 ),
               ),
@@ -538,7 +540,6 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
   }
 
   pageTwoValidation() {
-
     if (!faceImgValidated) {
       errorMessage("Debes subir una selfie.");
     } else if (!idImgValidated) {
@@ -653,15 +654,15 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Kanit',
-              fontSize: screenInfo.size.width / 20),
-              textAlign: TextAlign.center,
+              fontSize: screenInfo.size.width * 0.045),
+          textAlign: TextAlign.center,
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
         ),
         Container(
             width: screenInfo.size.width,
-            height: screenInfo.size.height / 2.7,
+            height: screenInfo.size.height * 0.35,
             padding: EdgeInsets.all(10),
             child: Card(
                 child: Padding(
@@ -673,7 +674,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                             'Número de teléfono',
                             style: TextStyle(
                               color: Colors.grey[700],
-                              fontSize: screenInfo.size.width / 20,
+                              fontSize: screenInfo.size.width * 0.045,
                               fontFamily: 'Kanit',
                             ),
                           ),
@@ -685,7 +686,7 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                               hintText: 'Ej: 8092461925',
                               hintStyle: TextStyle(
                                 fontFamily: 'Kanit',
-                                fontSize: screenInfo.size.width / 21,
+                                fontSize: screenInfo.size.width * 0.045,
                               ),
                               counterText: "",
                             ),
@@ -695,21 +696,29 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                             'Ciudad',
                             style: TextStyle(
                               color: Colors.grey[700],
-                              fontSize: screenInfo.size.width / 20,
+                              fontSize: screenInfo.size.width * 0.045,
                               fontFamily: 'Kanit',
                             ),
                           ),
                           Row(
                             children: <Widget>[
                               DropdownButton<String>(
-                                  items: <String>['San Pedro de Macoris']
-                                      .map((String value) {
+                                  items: <String>[
+                                    'Santo Domingo',
+                                    'Santiago',
+                                    'San Pedro de Macoris',
+                                    'La Altagracia',
+                                    'La Romana',
+                                    'La Vega',
+                                    'Puerto Plata'
+                                  ].map((String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Text(
                                         value,
                                         style: TextStyle(
                                           fontFamily: 'Kanit',
+                                          fontSize: screenInfo.size.width * 0.045
                                         ),
                                       ),
                                     );
@@ -723,38 +732,77 @@ class DeliveryRegisterState extends State<DeliveryRegister> {
                                     city == "" ? "Tu ciudad" : city,
                                     style: TextStyle(
                                       fontFamily: 'Kanit',
+                                      fontSize: screenInfo.size.width * 0.045
                                     ),
                                   )),
                             ],
                           )
                         ])))),
-       !registerProcess? GestureDetector(
-          child: Container(
-            width: screenInfo.size.width / 3,
-            height: screenInfo.size.height / 14,
-            child: Center(
-              child: Card(
-                color: Color.fromRGBO(255, 144, 82, 1),
-                child: Center(
-                  child: Text(
-                    'Registrarme',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Kanit',
-                        fontSize: screenInfo.size.width / 22),
+                        Center(
+            child: Column(children: <Widget>[
+              Text(
+              'Al registrarme estoy de acuerdo con los ',
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Kanit',
+                fontSize: screenInfo.size.width * 0.025,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            GestureDetector(child: Text(
+              'Terminos y Condiciones.',
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Kanit',
+                fontSize: screenInfo.size.width * 0.03,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            onTap: (){
+              _launchURL();
+            },)
+            ],),
+          ),
+        !registerProcess
+            ? GestureDetector(
+                child: Container(
+                  width: screenInfo.size.width * 0.40,
+                  height: screenInfo.size.height * 0.07,
+                  child: Center(
+                    child: Card(
+                      color: Color.fromRGBO(255, 144, 82, 1),
+                      child: Center(
+                        child: Text(
+                          'Registrarme',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Kanit',
+                              fontSize: screenInfo.size.width * 0.045),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          onTap: () async {
-            pageThreeValidation();
-          },
-        ):Center(child: CircularProgressIndicator(backgroundColor: Colors.white,),)
+                onTap: () async {
+                  pageThreeValidation();
+                },
+              )
+            : Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                ),
+              )
       ],
     );
   }
-
+_launchURL() async {
+  const url = 'https://zerdaly.com/terms.html';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
   pageThreeValidation() async {
     if (deliveryPhone.text.isEmpty || city == "") {
       errorMessage("Por favor, completa todos los campos.");

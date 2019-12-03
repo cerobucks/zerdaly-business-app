@@ -29,20 +29,20 @@ class DeliveryLoginState extends State<DeliveryLogin> {
         body: ListView(
           children: <Widget>[
             Container(
-                height: screenInfo.size.height / 4,
+                height: screenInfo.size.height * 0.22,
                 child: Center(
                   child: Text(
                     "Zerdaly",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Pacifico',
-                      fontSize: screenInfo.size.width / 6,
+                      fontSize: screenInfo.size.width * 0.12,
                     ),
                   ),
                 )),
             Container(
               padding: EdgeInsets.all(5),
-              height: screenInfo.size.height / 1.55,
+              height: screenInfo.size.height * 0.65,
               child: Card(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -55,10 +55,10 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                                 style: TextStyle(
                                     color: Color.fromRGBO(255, 144, 82, 1),
                                     fontFamily: 'Kanit',
-                                    fontSize: screenInfo.size.width / 18),
+                                    fontSize: screenInfo.size.width * 0.05),
                               )
                             : Container(
-                                width: screenInfo.size.width / 1.5,
+                                width: screenInfo.size.width * 0.80,
                                 child: Card(
                                   color: Colors.red[400],
                                   child: Padding(
@@ -83,7 +83,7 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                               'Email',
                               style: TextStyle(
                                 color: Colors.grey[700],
-                                fontSize: screenInfo.size.width / 20,
+                                fontSize: screenInfo.size.width * 0.045,
                                 fontFamily: 'Kanit',
                               ),
                             ),
@@ -95,9 +95,16 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                                   loginValidation = false;
                                 });
                               },
+                              style: TextStyle(
+                                fontFamily: 'Kanit',
+                                fontSize: screenInfo.size.width * 0.045,
+                              ),
                               decoration: InputDecoration(
                                   hintText: 'juan@mail.com',
-                                  hintStyle: TextStyle(fontFamily: 'Kanit'),
+                                  hintStyle: TextStyle(
+                                    fontFamily: 'Kanit',
+                                    fontSize: screenInfo.size.width * 0.045,
+                                  ),
                                   errorText: emailValidation
                                       ? 'Esta campo no puede estar vacío.'
                                       : null),
@@ -109,7 +116,7 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                               'Contraseña',
                               style: TextStyle(
                                 color: Colors.grey[700],
-                                fontSize: screenInfo.size.width / 20,
+                                fontSize: screenInfo.size.width * 0.045,
                                 fontFamily: 'Kanit',
                               ),
                             ),
@@ -121,11 +128,17 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                                   loginValidation = false;
                                 });
                               },
+                              style: TextStyle(
+                                fontFamily: 'Kanit',
+                                fontSize: screenInfo.size.width * 0.045,
+                              ),
                               obscureText: true,
                               decoration: InputDecoration(
                                   hintText: 'Tu contraseña',
                                   hintStyle: TextStyle(
                                     fontFamily: 'Kanit',
+                                fontSize: screenInfo.size.width * 0.045,
+
                                   ),
                                   errorText: passValidation
                                       ? 'Esta campo no puede estar vacío.'
@@ -139,8 +152,8 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                     !loginState
                         ? GestureDetector(
                             child: Container(
-                              width: screenInfo.size.width / 3,
-                              height: screenInfo.size.height / 16,
+                              width: screenInfo.size.width * 0.40,
+                              height: screenInfo.size.height* 0.07,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(colors: [
                                 Colors.orange[300],
@@ -152,7 +165,7 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Kanit',
-                                      fontSize: screenInfo.size.width / 19),
+                                      fontSize: screenInfo.size.width * 0.045),
                                 ),
                               ),
                             ),
@@ -186,11 +199,14 @@ class DeliveryLoginState extends State<DeliveryLogin> {
                           style: TextStyle(
                               fontFamily: 'Kanit',
                               color: Color.fromRGBO(255, 144, 82, 1),
-                              fontSize: screenInfo.size.width / 19),
+                              fontSize: screenInfo.size.width * 0.045),
                         ),
                       ),
-                      onTap: (){
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=> DeliveryRegister()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DeliveryRegister()));
                       },
                     ),
                     Spacer()
@@ -223,13 +239,12 @@ class DeliveryLoginState extends State<DeliveryLogin> {
     }
   }
 
-  saveToken(String auth) async{
+  saveToken(String auth) async {
     Token token = Token.instance;
     Map<String, dynamic> row = {
       Token.columnKind: "Delivery",
       Token.columnAuth: auth
     };
-
 
     final id = await token.insert(row);
 

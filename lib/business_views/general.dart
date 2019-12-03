@@ -631,6 +631,11 @@ class BusinessGeneralState extends State<BusinessGeneral> {
         if (orders[i]["delivery_id"] != null) {
           count = count + 1;
         }
+
+        if (orders[i]["business_shipping"] == 1 &&
+            orders[i]["shipping_status"] == 5) {
+          count = count + 1;
+        }
       }
     } else {
       return 0.toString();
@@ -649,6 +654,12 @@ class BusinessGeneralState extends State<BusinessGeneral> {
       if (sales[weekYear] != null) {
         for (var i = 0; i < sales[weekYear].length; i++) {
           amount += sales[weekYear][i]["business_total"];
+
+          if (sales[weekYear][i]["business_shipping"] == 1) {
+            amount += (sales[weekYear][i]["shipping_total"] -
+                    (sales[weekYear][i]["shipping_total"] * 0.049))
+                .toInt();
+          }
         }
       }
     }
@@ -1025,13 +1036,12 @@ class BusinessGeneralState extends State<BusinessGeneral> {
       } else if (response[2] == "Your card's expiration month is invalid.") {
         errorMessage("El mes de la tarjeta es incorrecto.");
         subscriptionValidationProcess = false;
-      }else if(response[2] == "Your card was declined."){
-                errorMessage("Tu tarjeta fue rechaza.");
+      } else if (response[2] == "Your card was declined.") {
+        errorMessage("Tu tarjeta fue rechaza.");
         subscriptionValidationProcess = false;
-      } 
-      else{
+      } else {
         errorMessage("Intentalo otra vez.");
-      subscriptionValidationProcess = false;
+        subscriptionValidationProcess = false;
       }
     } else if (response[0] == "200") {
       saveBank(auth);
@@ -2061,11 +2071,17 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                     width: 7,
                                     height: 7,
                                     decoration: BoxDecoration(
-                                        color: orderData["delivery_id"] == null
-                                            ? Colors.red
+                                        color: orderData["business_shipping"] ==
+                                                0
+                                            ? orderData["delivery_id"] == null
+                                                ? Colors.red
+                                                : orderData["shipping_status"] ==
+                                                        5
+                                                    ? Colors.green
+                                                    : Colors.orange
                                             : orderData["shipping_status"] == 5
                                                 ? Colors.green
-                                                : Colors.orange,
+                                                : Colors.red,
                                         shape: BoxShape.circle),
                                   ),
                                 ],
@@ -2155,12 +2171,20 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                             userDetails = null;
                                             shippingDelivery = null;
                                             deliveriesAvailable = null;
+                                            userLocationDetails = null;
                                             orderDetailsData = orderData;
                                             orderProductsDetails =
                                                 orderProducts;
                                             getUser(orderData["user_id"]);
                                             pages = 6;
                                           });
+
+                                          if (orderDetailsData[
+                                                  "business_shipping"] !=
+                                              0) {
+                                            getUserLocation(orderDetailsData[
+                                                "user_location_id"]);
+                                          }
 
                                           if (orderDetailsData["delivery_id"] !=
                                               null) {
@@ -2189,10 +2213,20 @@ class BusinessGeneralState extends State<BusinessGeneral> {
     );
   }
 
+  getUserLocation(int id) async {
+    final auth = await token.queryAllRows();
+    final response = await business.getUserLocation(id, auth[0]["Auth"]);
+
+    setState(() {
+      userLocationDetails = response[2];
+    });
+  }
+
 //Order Details
   var orderDetailsData;
   var orderProductsDetails;
   var userDetails;
+  var userLocationDetails;
   var deliveriesAvailable;
   var shippingDelivery;
   //1 = user info, 2 = products details, 3 = contact delivery or delivery status.
@@ -2529,6 +2563,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                   ((orderDetailsData["products_total"] *
                                               0.049) +
                                           15)
+                                      .toInt()
                                       .toString(),
                               style: TextStyle(
                                 color: Colors.grey[600],
@@ -2555,8 +2590,10 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                               "\$" +
                                   (orderDetailsData["products_total"] -
                                           ((orderDetailsData["products_total"] *
-                                                  0.049) +
-                                              15))
+                                                      0.049) +
+                                                  15)
+                                              .toInt())
+                                      .toInt()
                                       .toString(),
                               style: TextStyle(
                                 color: Colors.orange,
@@ -2594,11 +2631,57 @@ class BusinessGeneralState extends State<BusinessGeneral> {
           ),
         ),
         Divider(),
-        orderDetailsData["delivery_id"] == null
-            ? contactDelivery()
-            : shippingDetails()
+        orderDetailsData["business_shipping"] == 1
+            ? orderDetailsData["shipping_status"] == 0
+                ? Row(
+                    children: <Widget>[
+                      Spacer(),
+                      Text(
+                        "¿Enviaste este producto?",
+                        style: TextStyle(
+                          color: Colors.orange,
+                          fontSize: MediaQuery.of(context).size.width * 0.045,
+                          fontFamily: 'Kanit',
+                        ),
+                      ),
+                      Spacer(),
+                      GestureDetector(
+                        child: Text(
+                          "Si",
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontSize: MediaQuery.of(context).size.width * 0.045,
+                            fontFamily: 'Kanit',
+                          ),
+                        ),
+                        onTap: () {
+                          confirmShippingSent(orderDetailsData['id']);
+                        },
+                      ),
+                      Spacer(),
+                    ],
+                  )
+                : Container()
+            : Container(),
+        orderDetailsData["business_shipping"] == 0
+            ? orderDetailsData["delivery_id"] == null
+                ? contactDelivery()
+                : shippingDetails()
+            : businessShipping()
       ],
     );
+  }
+
+  confirmShippingSent(int id) async {
+    final auth = await token.queryAllRows();
+
+    final response = await business.shippingSent(id, auth[0]["Auth"]);
+
+    if (response[0] == '200') {
+      setState(() {
+        orderDetailsData["shipping_status"] = 4;
+      });
+    }
   }
 
   Widget contactDelivery() {
@@ -2633,7 +2716,7 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                   return Container(
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 9.5,
+                      height: MediaQuery.of(context).size.height * 0.12,
                       child: Card(
                           child: Padding(
                         padding: EdgeInsets.all(5),
@@ -2649,11 +2732,17 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       "Nombre",
                                       style: TextStyle(
                                           color: Colors.grey[600],
-                                          fontSize: 16,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.04,
                                           fontFamily: 'Kanit',
                                           fontWeight: FontWeight.w800),
                                     ),
-                                    Text(
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.33,
+                                      child: Text(
                                         delivery["name"] +
                                             " " +
                                             delivery["lastname"],
@@ -2661,10 +2750,13 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                           color: Colors.grey[600],
                                           fontSize: MediaQuery.of(context)
                                                   .size
-                                                  .width /
-                                              28,
+                                                  .width *
+                                              0.04,
                                           fontFamily: 'Kanit',
-                                        )),
+                                        ),
+                                        maxLines: 1,
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 Spacer(),
@@ -2675,7 +2767,10 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       "Teléfono",
                                       style: TextStyle(
                                           color: Colors.grey[600],
-                                          fontSize: 16,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.04,
                                           fontFamily: 'Kanit',
                                           fontWeight: FontWeight.w800),
                                     ),
@@ -2684,8 +2779,8 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                           color: Colors.grey[600],
                                           fontSize: MediaQuery.of(context)
                                                   .size
-                                                  .width /
-                                              28,
+                                                  .width *
+                                              0.04,
                                           fontFamily: 'Kanit',
                                         )),
                                   ],
@@ -2698,7 +2793,10 @@ class BusinessGeneralState extends State<BusinessGeneral> {
                                       "Acción",
                                       style: TextStyle(
                                           color: Colors.grey[600],
-                                          fontSize: 168,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.04,
                                           fontFamily: 'Kanit',
                                           fontWeight: FontWeight.w800),
                                     ),
@@ -2731,6 +2829,118 @@ class BusinessGeneralState extends State<BusinessGeneral> {
               ),
       ],
     );
+  }
+
+  Widget businessShipping() {
+    return userLocationDetails != null
+        ? Container(
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.all(5),
+            child: Card(
+                child: Container(
+                    padding: EdgeInsets.all(5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Enviar a " + userLocationDetails[0]['city'],
+                          style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.045,
+                              fontFamily: 'Kanit',
+                              fontWeight: FontWeight.w800),
+                        ),
+                        Padding(padding: EdgeInsets.only(top: 5)),
+                        Row(
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+                                Text("Precio ",
+                                    style: TextStyle(
+                                        color: Colors.grey[600],
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.04,
+                                        fontFamily: 'Kanit',
+                                        fontWeight: FontWeight.w800)),
+                                Text(
+                                  "\$" +
+                                      orderDetailsData["shipping_total"]
+                                          .toString(),
+                                  style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.04,
+                                    fontFamily: 'Kanit',
+                                  ),
+                                )
+                              ],
+                            ),
+                            Spacer(),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "-4.9%",
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.045,
+                                      fontFamily: 'Kanit',
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                Text(
+                                    "\$" +
+                                        (orderDetailsData["shipping_total"] -
+                                                (orderDetailsData[
+                                                        "shipping_total"] *
+                                                    0.049))
+                                            .toInt()
+                                            .toString(),
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.04,
+                                      fontFamily: 'Kanit',
+                                    ))
+                              ],
+                            ),
+                            Spacer(),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "Estado",
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.045,
+                                      fontFamily: 'Kanit',
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                Text(
+                                    orderDetailsData["shipping_status"] == 0
+                                        ? "No enviado"
+                                        : "Enviado",
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.04,
+                                      fontFamily: 'Kanit',
+                                    ))
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ))))
+        : Center(
+            child: CircularProgressIndicator(),
+          );
   }
 
   getDelivery(int id) async {

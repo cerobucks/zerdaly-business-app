@@ -32,6 +32,7 @@ dependencies:
   firebase_analytics: ^5.0.2
   firebase_messaging: ^5.1.6
   image: ^2.1.8
+  url_launcher: ^5.2.7
   path_provider: ^1.4.0
   mapbox_gl: ^0.0.3
   flutter_mapbox_navigation: ^0.0.3
@@ -39,7 +40,7 @@ dependencies:
   jiffy: ^2.1.1
   flutter_masked_text: ^0.8.0
   geolocator: ^5.1.5
-  
+ 
 
 
 dev_dependencies:
