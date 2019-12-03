@@ -26,11 +26,11 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 
-//    def keystoreProperties = new Properties()
-//    def keystorePropertiesFile = rootProject.file('key.properties')
-//    if (keystorePropertiesFile.exists()) {
-//        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-//    }
+def keystoreProperties = new Properties()
+   def keystorePropertiesFile = rootProject.file('key.properties')
+   if (keystorePropertiesFile.exists()) {
+       keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+   }
 
    android {
     compileSdkVersion 28
@@ -49,8 +49,8 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
         minSdkVersion 16
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 4
-        versionName "1.3"
+        versionCode 5
+        versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
