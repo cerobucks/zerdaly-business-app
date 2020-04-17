@@ -35,7 +35,7 @@
           <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
              android:value="ocr" />
-        <meta-data android:name="com.mapbox.token" android:value="pk.eyJ1IjoiemVyZGFseTE5IiwiYSI6ImNrMmRic28yNDBhajczY283dXZyNzIxemsifQ.G-hzaNMz313Uw3_UiMkHIQ" />  
+        <meta-data android:name="com.mapbox.token" android:value="" />  
     </application>
      <uses-permission android:name="android.permission.INTERNET"/>
      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
