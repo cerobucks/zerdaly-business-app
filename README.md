@@ -22,6 +22,6 @@ themselves. Here their got a dashboard that shows them all the info needed to be
 <p align="center"><img src="https://i.imgur.com/D0x32sr.jpg" width="300"></p>
 
 - This is the add product view.
-<p align="center"><img src="hhttps://i.imgur.com/34NANa1.jpg" width="300"></p>
+<p align="center"><img src="https://i.imgur.com/34NANa1.jpg" width="300"></p>
 
 
