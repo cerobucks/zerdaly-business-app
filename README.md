@@ -2,7 +2,7 @@
 This is a Flutter App where businesses and deliveries can register and provide all the information needed to be validate
 themselves. Here their got a dashboard that shows them all the info needed to be updated about their progress.
 
-##What I learned.
+## What I learned.
 - I learned to create recurring payments.
 - I learned to process and validate credit cards and banking information.
 - I learned to use Google Maps API.
